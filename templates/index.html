@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encriptador con FastAPI</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha384-..."
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="../static/assets/logo.png" type="image/x-icon">
+  </head>
+  <body class="bg-dark text-white">
+    <div class="container py-5">
+      <h1 class="text-center"> <span class="text-primary"><b>Encriptador</b></span> / <b>Desencriptador</b></h1>
+      <div class="container mt-5">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card bg-dark text-white shadow-lg border-0 h-100">
+              <div class="card-body p-4">
+                <h2 class="card-title text-center text-primary mb-4">
+                  Encriptar
+                </h2>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control form-control-lg bg-secondary text-white border-primary"
+                    id="encrypt-input"
+                    placeholder="Introduce el texto a encriptar"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <button
+                  class="btn btn-primary btn-lg w-100 mt-2"
+                  onclick="encryptText()"
+                >
+                  <i class="fas fa-lock"></i> Encriptar
+                </button>
+                <div class="mt-4 pt-3 border-top border-primary">
+                  <p class="text-muted mb-2">Texto Encriptado:</p>
+                  <div
+                    class="d-flex align-items-center bg-secondary p-3 rounded"
+                  >
+                    <p
+                      class="mb-0 text-break me-2 flex-grow-1"
+                      id="encrypt-result"
+                    ></p>
+                    <button
+                      class="btn text-white copy-btn"
+                      onclick="copyToClipboard('encrypt-result')"
+                      title="Copiar al portapapeles"
+                    >
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card bg-dark text-white shadow-lg border-0 h-100">
+              <div class="card-body p-4">
+                <h2 class="card-title text-center text-primary mb-4">
+                  Desencriptar
+                </h2>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control form-control-lg bg-secondary text-white border-primary"
+                    id="decrypt-input"
+                    placeholder="Introduce el texto encriptado"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <button
+                  class="btn btn-primary btn-lg w-100 mt-2"
+                  onclick="decryptText()"
+                >
+                  <i class="fas fa-unlock"></i> Desencriptar
+                </button>
+                <div class="mt-4 pt-3 border-top border-primary">
+                  <p class="text-muted mb-2">Texto Desencriptado:</p>
+                  <div
+                    class="d-flex align-items-center bg-secondary p-3 rounded"
+                  >
+                    <p
+                      class="mb-0 text-break me-2 flex-grow-1"
+                      id="decrypt-result"
+                    ></p>
+                    <button
+                      class="btn text-white copy-btn"
+                      onclick="copyToClipboard('decrypt-result')"
+                      title="Copiar al portapapeles"
+                    >
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+    <!-- footer -->
+    <footer class="py-3 my-4">
+      <p class="text-center h4">© 2025 From Computing - EJCM05</p>
+    </footer>
+    <script src="/static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

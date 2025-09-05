@@ -1,0 +1,5 @@
+__pychache__
+.venv
+secret.key
+__pycache__
+.vscode
