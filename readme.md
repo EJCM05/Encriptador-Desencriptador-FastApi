@@ -1,4 +1,4 @@
-
+[![logo.png](https://i.postimg.cc/GtKtmZgL/logo.png)](https://postimg.cc/WqDT9fPC)
 # Encriptador Web con FastAPI
 
 Un servicio web simple y robusto para encriptar y desencriptar texto, construido con **FastAPI** y **Python**.
