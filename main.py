@@ -3,10 +3,12 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse
-# ... (el resto de las importaciones que ya tenías)
 from pydantic import BaseModel
 from cryptography.fernet import Fernet
-import os
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde el archivo .env
+load_dotenv()
 
 # Inicializar la aplicación
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -19,18 +21,25 @@ app = FastAPI(
 # Configurar los directorios para archivos estáticos y templates
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
 
-# ... (el código de la clave Fernet que ya tenías)
-KEY_FILE = "secret.key"
+# Lógica para manejar la clave de cifrado
+key = os.environ.get("SECRET_KEY")
 
-if not os.path.exists(KEY_FILE):
-    key = Fernet.generate_key()
-    with open(KEY_FILE, "wb") as key_file:
-        key_file.write(key)
+if key:
+    f = Fernet(key.encode())
 else:
-    with open(KEY_FILE, "rb") as key_file:
-        key = key_file.read()
-
-f = Fernet(key)
+    KEY_FILE = "secret.key"
+    if os.path.exists(KEY_FILE):
+        with open(KEY_FILE, "rb") as key_file:
+            key = key_file.read()
+            f = Fernet(key)
+    else:
+        # Esto solo debería ocurrir en un entorno local si la clave no existe
+        print("ADVERTENCIA: La variable de entorno 'SECRET_KEY' no está configurada y 'secret.key' no existe. Se generará una clave temporal.")
+        key = Fernet.generate_key()
+        f = Fernet(key)
+        # Opcionalmente, guardar la clave temporal para no generar una nueva en cada reinicio
+        with open(KEY_FILE, "wb") as key_file:
+            key_file.write(key)
 
 # Modelo de datos para la entrada de la API
 class Data(BaseModel):
@@ -46,8 +55,7 @@ def read_root(request: Request):
 def read_root(request: Request):
     return FileResponse(os.path.join(BASE_DIR, "service-worker.js"))
 
-
-# ... (tus endpoints de /encrypt y /decrypt van aquí, sin cambios)
+# Endpoints de la API para encriptar y desencriptar
 @app.post("/encrypt/")
 def encrypt_text(data: Data):
     encrypted_text = f.encrypt(data.text.encode())
