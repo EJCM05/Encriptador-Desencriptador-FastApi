@@ -1,7 +1,8 @@
+import os
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 # ... (el resto de las importaciones que ya tenías)
 from pydantic import BaseModel
 from cryptography.fernet import Fernet
@@ -17,7 +18,6 @@ app = FastAPI(
 
 # Configurar los directorios para archivos estáticos y templates
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
-templates = Jinja2Templates(directory="templates")
 
 # ... (el código de la clave Fernet que ya tenías)
 KEY_FILE = "secret.key"
@@ -39,7 +39,13 @@ class Data(BaseModel):
 # Endpoint para servir el HTML
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return FileResponse(os.path.join(BASE_DIR, "templates", "index.html"))
+
+# Endpoint para servir el Service Worker
+@app.get("/service-worker.js", response_class=HTMLResponse)
+def read_root(request: Request):
+    return FileResponse(os.path.join(BASE_DIR, "service-worker.js"))
+
 
 # ... (tus endpoints de /encrypt y /decrypt van aquí, sin cambios)
 @app.post("/encrypt/")

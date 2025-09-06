@@ -129,7 +129,7 @@
         window.addEventListener("load", () => {
           // Registra el Service Worker en la ruta '/service-worker.js'
           navigator.serviceWorker
-            .register("/static/service-worker.js")
+            .register("/service-worker.js")
             .then((registration) => {
               // Si el registro fue exitoso, muestra un mensaje en la consola
               console.info(

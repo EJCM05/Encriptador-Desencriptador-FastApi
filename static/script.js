@@ -39,7 +39,8 @@ const copyToClipboard = async (elementId) => {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     try {
       await navigator.clipboard.writeText(textToCopy);
-      alert("Texto copiado al portapapeles.");
+    //   alert("Texto copiado al portapapeles.");
+        console.ingo("ok")
     } catch (err) {
       console.error("Error al copiar el texto: ", err);
       // Fallback para entornos inseguros
@@ -59,7 +60,8 @@ const copyFallback = (text) => {
   textarea.select();
   try {
     document.execCommand("copy");
-    alert("Texto copiado al portapapeles (método de respaldo).");
+    console.info("200")
+    // alert("Texto copiado al portapapeles (método de respaldo).");
   } catch (err) {
     console.error("Error al copiar el texto (fallback): ", err);
     alert("No se pudo copiar el texto. Por favor, cópialo manualmente.");
