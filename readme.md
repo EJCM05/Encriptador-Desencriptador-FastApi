@@ -23,6 +23,8 @@ Un servicio web simple y robusto para encriptar y desencriptar texto, construido
 - **Interfaz de Usuario (UI) Moderna:** Front-end elegante y responsivo, diseñado con **Bootstrap**.
 - **API Robusta:** Construida sobre **FastAPI**, lo que garantiza alto rendimiento y documentación interactiva automática (Swagger UI).
 - **Seguridad:** Utiliza la librería `cryptography` para una encriptación segura.
+- **PWA** Para una flexibilidad en entornos android.
+
 
 ## Tecnologías Usadas
 - **Backend:**
