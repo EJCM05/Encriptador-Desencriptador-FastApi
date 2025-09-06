@@ -67,6 +67,7 @@ Sigue estos pasos para poner a funcionar el proyecto en tu máquina local.
     - Abre tu navegador y ve a [http://127.0.0.1:8000](http://127.0.0.1:8000) para usar la interfaz gráfica.
     - Para ver la documentación interactiva de la API (Swagger UI), visita [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
+Aplicacion desplegada en render:  [app-render+pwa](https://encriptador-desencriptador-fastapi.onrender.com)
 
 ## 📜 Licencia
 
