@@ -3,7 +3,7 @@
     "name": "EncryptorAPP",
     "icons": [
         {
-            "src": "../static/assets/logo.png",
+            "src": "/static/assets/logo.png",
             "sizes": "1024x1024",
             "type": "image/png"
         }
