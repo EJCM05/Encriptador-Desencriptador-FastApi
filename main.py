@@ -8,13 +8,15 @@ from cryptography.fernet import Fernet
 import os
 
 # Inicializar la aplicación
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 app = FastAPI(
     title="Encriptador con FastAPI",
     description="Una API para encriptar y desencriptar texto de manera segura."
 )
 
 # Configurar los directorios para archivos estáticos y templates
-app.mount("/static", StaticFiles(directory="static"), name="static") # (Si usas CSS o JS, crea una carpeta 'static')
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
 templates = Jinja2Templates(directory="templates")
 
 # ... (el código de la clave Fernet que ya tenías)
